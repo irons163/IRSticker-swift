@@ -11,6 +11,6 @@ import UIKit
 
 extension UIImage {
     class func imageNamedForCurrentBundle(name: String) -> UIImage? {
-        return UIImage.init(named: name, in: Utilities.getCurrentBundle(), with: nil)
+        return UIImage.init(named: name, in: Utilities.getCurrentBundle(), compatibleWith: nil)
     }
 }
