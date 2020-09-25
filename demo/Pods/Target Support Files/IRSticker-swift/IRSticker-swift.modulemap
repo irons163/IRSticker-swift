@@ -1,0 +1,6 @@
+framework module IRSticker_swift {
+  umbrella header "IRSticker-swift-umbrella.h"
+
+  export *
+  module * { export * }
+}

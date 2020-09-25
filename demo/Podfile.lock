@@ -1,0 +1,16 @@
+PODS:
+  - IRSticker-swift (0.1.0)
+
+DEPENDENCIES:
+  - IRSticker-swift
+
+SPEC REPOS:
+  trunk:
+    - IRSticker-swift
+
+SPEC CHECKSUMS:
+  IRSticker-swift: debdeb46aa3e346ad283a008881d5c5fa11868b9
+
+PODFILE CHECKSUM: c623f48bc72cba0535f65af234f4ccdd3f6aef81
+
+COCOAPODS: 1.9.3
