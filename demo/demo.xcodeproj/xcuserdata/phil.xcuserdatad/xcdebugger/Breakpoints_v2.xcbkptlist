@@ -28,22 +28,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5CB79C46-0974-4D0D-9DAC-554E0DC87B7D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../IRSticker-swift/Class/IRStickerView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "setupConfig()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "984D52F7-462A-464F-890E-805A1C0A520A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -51,10 +35,42 @@
             filePath = "../IRSticker-swift/Class/IRStickerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "handleRotate(gesture:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "984D52F7-462A-464F-890E-805A1C0A520A - 706698f444254322"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IRSticker_swift.IRStickerView.handleRotate(gesture: __C.UIRotationGestureRecognizer) -&gt; ()"
+                  moduleName = "IRSticker_swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phil/Documents/github/IRSticker-swift/IRSticker-swift/Class/IRStickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  uuid = "984D52F7-462A-464F-890E-805A1C0A520A - 706698f444254322"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IRSticker_swift.IRStickerView.handleRotate(gesture: __C.UIRotationGestureRecognizer) -&gt; ()"
+                  moduleName = "IRSticker_swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phil/Documents/github/IRSticker-swift/IRSticker-swift/Class/IRStickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "588">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -67,10 +83,42 @@
             filePath = "../IRSticker-swift/Class/IRStickerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "handleTap(gesture:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5B1FE3AC-2238-4A54-9910-55E132AB3E98 - bcce3f284ccdc140"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IRSticker_swift.IRStickerView.handleTap(gesture: __C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "IRSticker_swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phil/Documents/github/IRSticker-swift/IRSticker-swift/Class/IRStickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "5B1FE3AC-2238-4A54-9910-55E132AB3E98 - bcce3f284ccdc1a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IRSticker_swift.IRStickerView.handleTap(gesture: __C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "IRSticker_swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phil/Documents/github/IRSticker-swift/IRSticker-swift/Class/IRStickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "252">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -83,10 +131,42 @@
             filePath = "../IRSticker-swift/Class/IRStickerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "handleTapContentView()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "42189B74-5CD4-4312-9753-5B5B142293B4 - 417e2ae45bf6b04c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IRSticker_swift.IRStickerView.handleTapContentView() -&gt; ()"
+                  moduleName = "IRSticker_swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phil/Documents/github/IRSticker-swift/IRSticker-swift/Class/IRStickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "229"
+                  endingLineNumber = "229"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "42189B74-5CD4-4312-9753-5B5B142293B4 - 417e2ae45bf6b06f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IRSticker_swift.IRStickerView.handleTapContentView() -&gt; ()"
+                  moduleName = "IRSticker_swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phil/Documents/github/IRSticker-swift/IRSticker-swift/Class/IRStickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "228"
+                  endingLineNumber = "228"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -99,10 +179,42 @@
             filePath = "../IRSticker-swift/Class/IRStickerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "handleTapContentView()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "07D4CB05-27CC-43A5-9490-F74C3ABE0F1F - 417e2ae45bf6b02d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IRSticker_swift.IRStickerView.handleTapContentView() -&gt; ()"
+                  moduleName = "IRSticker_swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phil/Documents/github/IRSticker-swift/IRSticker-swift/Class/IRStickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "230"
+                  endingLineNumber = "230"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "07D4CB05-27CC-43A5-9490-F74C3ABE0F1F - 417e2ae45bf6b02d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IRSticker_swift.IRStickerView.handleTapContentView() -&gt; ()"
+                  moduleName = "IRSticker_swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phil/Documents/github/IRSticker-swift/IRSticker-swift/Class/IRStickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "230"
+                  endingLineNumber = "230"
+                  offsetFromSymbolStart = "212">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
