@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A59CC73273A56CC005B2FF3 /* IRSticker_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8F22F22511AE160031A1BC /* IRSticker_swift.framework */; };
-		4A59CC74273A56CC005B2FF3 /* IRSticker_swift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8F22F22511AE160031A1BC /* IRSticker_swift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4A59CC79273A6998005B2FF3 /* Pods_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBF50AE1C62AD299DF1D8E2 /* Pods_demo.framework */; };
 		4A8F22DA2511AE000031A1BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F22D92511AE000031A1BC /* AppDelegate.swift */; };
 		4A8F22DC2511AE000031A1BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F22DB2511AE000031A1BC /* SceneDelegate.swift */; };
 		4A8F22DE2511AE000031A1BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F22DD2511AE000031A1BC /* ViewController.swift */; };
@@ -31,20 +30,6 @@
 			remoteInfo = "IRSticker-swift";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4A59CC75273A56CD005B2FF3 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4A59CC74273A56CC005B2FF3 /* IRSticker_swift.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0CBF50AE1C62AD299DF1D8E2 /* Pods_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A59CC73273A56CC005B2FF3 /* IRSticker_swift.framework in Frameworks */,
+				4A59CC79273A6998005B2FF3 /* Pods_demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +138,6 @@
 				4A8F22D32511AE000031A1BC /* Frameworks */,
 				4A8F22D42511AE000031A1BC /* Resources */,
 				D3C27C1D8F3B1F3B38089CF0 /* [CP] Embed Pods Frameworks */,
-				4A59CC75273A56CD005B2FF3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,7 +240,7 @@
 		};
 		D3C27C1D8F3B1F3B38089CF0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -266,7 +250,7 @@
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
@@ -425,6 +409,7 @@
 			baseConfigurationReference = F539EC9FA084D1676E5ED49B /* Pods-demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = demo/Info.plist;
@@ -434,6 +419,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = irons163.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -444,6 +430,7 @@
 			baseConfigurationReference = 56392E9F50D4C428FF255B55 /* Pods-demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = demo/Info.plist;
@@ -453,6 +440,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = irons163.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

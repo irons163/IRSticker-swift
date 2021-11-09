@@ -8,13 +8,13 @@
 
 import UIKit
 
-let stickerControlViewSize: CGFloat = 30
-let stickerHalfControlViewSize: CGFloat = 15
-
-let stickerMinScale: CGFloat = 0.5
-let stickerMaxScale: CGFloat = 2.0
+public let defaultStickerControlViewSize: CGFloat = 30
 
 public class IRStickerView: UIView, UIGestureRecognizerDelegate {
+    
+    public var stickerMinScale: CGFloat = 0.5
+    public var stickerMaxScale: CGFloat = 2.0
+    
     public var enabledControl: Bool = true // determine the control view is shown or not, default is YES
     {
         didSet {
@@ -48,6 +48,11 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
         }
     }
     
+    var stickerControlViewSize: CGFloat = defaultStickerControlViewSize
+    var stickerHalfControlViewSize: CGFloat {
+        return stickerControlViewSize / 2
+    }
+    
     var contentView: UIImageView!
 
     var leftTopControl: UIImageView!
@@ -62,7 +67,8 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
     var enableLeftBottomControl: Bool
     var enableRightBottomControl: Bool
     
-    public init(frame: CGRect, contentImage: UIImage) {
+    public init(frame: CGRect, contentImage: UIImage, stickerControlViewSize: CGFloat = defaultStickerControlViewSize) {
+        self.stickerControlViewSize = stickerControlViewSize
         self.enableRightTopControl = false
         self.enableLeftBottomControl = false
         self.enableLeftTopControl = false
@@ -71,6 +77,7 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
         
         self.enabledShakeAnimation = false
         self.enabledBorder = false
+        let stickerHalfControlViewSize = self.stickerControlViewSize / 2
 
         super.init(frame: CGRect.init(x: frame.origin.x - stickerHalfControlViewSize, y: frame.origin.y - stickerHalfControlViewSize, width: frame.size.width + stickerControlViewSize, height: frame.size.height + stickerControlViewSize))
 
