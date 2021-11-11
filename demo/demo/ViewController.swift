@@ -49,8 +49,8 @@ class ViewController: UIViewController, IRStickerViewDelegate {
         
         let sticker3 = IRStickerView(frame: CGRect.init(x: 0, y: 0, width: 250, height: 250), contentImage: UIImage.init(named: "sticker3.png")!)
         sticker3.center = view.center
-        sticker3.stickerMinScale = 1
-        sticker3.stickerMaxScale = 1.5
+        sticker3.stickerMinScale = 0
+        sticker3.stickerMaxScale = 0
         sticker3.enabledControl = false
         sticker3.enabledBorder = false
         sticker3.tag = 3

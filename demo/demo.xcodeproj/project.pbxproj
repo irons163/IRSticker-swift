@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A59CC79273A6998005B2FF3 /* Pods_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBF50AE1C62AD299DF1D8E2 /* Pods_demo.framework */; };
 		4A8F22DA2511AE000031A1BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F22D92511AE000031A1BC /* AppDelegate.swift */; };
 		4A8F22DC2511AE000031A1BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F22DB2511AE000031A1BC /* SceneDelegate.swift */; };
 		4A8F22DE2511AE000031A1BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F22DD2511AE000031A1BC /* ViewController.swift */; };
@@ -19,6 +18,8 @@
 		4A8F230B251344680031A1BC /* btn_smile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8F2306251344670031A1BC /* btn_smile@2x.png */; };
 		4A8F230C251344680031A1BC /* btn_flip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8F2307251344670031A1BC /* btn_flip@2x.png */; };
 		4A8F230D251344680031A1BC /* sticker3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8F2308251344670031A1BC /* sticker3.png */; };
+		B5B55770273CB03900F5FB03 /* IRSticker_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8F22F22511AE160031A1BC /* IRSticker_swift.framework */; };
+		B5B55771273CB03900F5FB03 /* IRSticker_swift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8F22F22511AE160031A1BC /* IRSticker_swift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,20 @@
 			remoteInfo = "IRSticker-swift";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B5B55772273CB03A00F5FB03 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5B55771273CB03900F5FB03 /* IRSticker_swift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0CBF50AE1C62AD299DF1D8E2 /* Pods_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A59CC79273A6998005B2FF3 /* Pods_demo.framework in Frameworks */,
+				B5B55770273CB03900F5FB03 /* IRSticker_swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +153,7 @@
 				4A8F22D32511AE000031A1BC /* Frameworks */,
 				4A8F22D42511AE000031A1BC /* Resources */,
 				D3C27C1D8F3B1F3B38089CF0 /* [CP] Embed Pods Frameworks */,
+				B5B55772273CB03A00F5FB03 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,7 +256,7 @@
 		};
 		D3C27C1D8F3B1F3B38089CF0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -250,7 +266,7 @@
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
