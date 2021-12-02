@@ -247,10 +247,12 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
         var scale = gesture.scale;
         // Scale limit
         let currentScale: CGFloat = self.contentView.layer.value(forKeyPath: "transform.scale") as! CGFloat
-        if (scale * currentScale <= stickerMinScale) {
-            scale = stickerMinScale / currentScale;
-        } else if (scale * currentScale >= stickerMaxScale) {
-            scale = stickerMaxScale / currentScale;
+        if (!(stickerMinScale == 0 && stickerMaxScale == 0)) {
+            if (scale * currentScale <= stickerMinScale) {
+                scale = stickerMinScale / currentScale;
+            } else if (scale * currentScale >= stickerMaxScale) {
+                scale = stickerMaxScale / currentScale;
+            }
         }
         
         self.contentView.transform = self.contentView.transform.scaledBy(x: scale, y: scale)
@@ -270,10 +272,12 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
         var scale = gesture.scale;
         // Scale limit
         let currentScale: CGFloat = self.contentView.layer.value(forKeyPath: "transform.scale") as! CGFloat
-        if (scale * currentScale <= stickerMinScale) {
-            scale = stickerMinScale / currentScale;
-        } else if (scale * currentScale >= stickerMaxScale) {
-            scale = stickerMaxScale / currentScale;
+        if (!(stickerMinScale == 0 && stickerMaxScale == 0)) {
+            if (scale * currentScale <= stickerMinScale) {
+                scale = stickerMinScale / currentScale;
+            } else if (scale * currentScale >= stickerMaxScale) {
+                scale = stickerMaxScale / currentScale;
+            }
         }
         
         self.contentView.transform = self.contentView.transform.scaledBy(x: scale, y: scale)
