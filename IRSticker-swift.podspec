@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "IRSticker-swift"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.1"
   spec.summary      = "A powerful sticker of iOS."
   spec.description  = "A powerful sticker of iOS."
   spec.homepage     = "https://github.com/irons163/IRSticker-swift.git"
