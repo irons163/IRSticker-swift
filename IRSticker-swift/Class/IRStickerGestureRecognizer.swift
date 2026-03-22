@@ -21,7 +21,11 @@ class IRStickerGestureRecognizer: UIGestureRecognizer {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         // Only support single hand.
-        if event.touches(for: self)!.count > 1 {
+        guard let touchesForSelf = event.touches(for: self) else {
+            self.state = .failed
+            return
+        }
+        if touchesForSelf.count > 1 {
             self.state = .failed
         }
     }
@@ -32,21 +36,25 @@ class IRStickerGestureRecognizer: UIGestureRecognizer {
         } else {
             self.state = .changed
         }
-        
-        let touch = touches.first
+
+        guard let touch = touches.first,
+              let superview = self.anchorView.superview else {
+            self.state = .failed
+            return
+        }
         let anchorViewCenter = self.anchorView.center
-        let currentPoint = touch?.location(in: self.anchorView.superview)
-        let previousPoint = touch?.previousLocation(in: self.anchorView.superview)
-        
-        let currentRotation = atan2f(Float((currentPoint!.y - anchorViewCenter.y)), Float((currentPoint!.x - anchorViewCenter.x)))
-        let previousRotation = atan2f(Float((previousPoint!.y - anchorViewCenter.y)), Float((previousPoint!.x - anchorViewCenter.x)))
-        
-        let currentRadius = self.distanceBetweenFirstPoint(first: currentPoint!, secondPoint: anchorViewCenter)
-        let previousRadius = self.distanceBetweenFirstPoint(first: previousPoint!, secondPoint: anchorViewCenter)
+        let currentPoint = touch.location(in: superview)
+        let previousPoint = touch.previousLocation(in: superview)
+
+        let currentRotation = atan2f(Float(currentPoint.y - anchorViewCenter.y), Float(currentPoint.x - anchorViewCenter.x))
+        let previousRotation = atan2f(Float(previousPoint.y - anchorViewCenter.y), Float(previousPoint.x - anchorViewCenter.x))
+
+        let currentRadius = self.distanceBetweenFirstPoint(first: currentPoint, secondPoint: anchorViewCenter)
+        let previousRadius = self.distanceBetweenFirstPoint(first: previousPoint, secondPoint: anchorViewCenter)
         let scale = currentRadius / previousRadius
-        
+
         self.rotation = CGFloat(currentRotation - previousRotation)
-        self.scale = scale;
+        self.scale = scale
     }
     
     func distanceBetweenFirstPoint(first: CGPoint, secondPoint second: CGPoint) -> CGFloat {
@@ -68,7 +76,7 @@ class IRStickerGestureRecognizer: UIGestureRecognizer {
     }
     
     public func resetGesture() {
-        self.rotation = 0;
-        self.scale = 1;
+        self.rotation = 0
+        self.scale = 1
     }
 }
