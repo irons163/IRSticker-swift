@@ -23,26 +23,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No">
-            <Locations>
-               <Location
-                  uuid = "36DE04F7-BECF-4A1E-A395-84179C63A511 - f030214c10979e26"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "swift_willThrow"
-                  moduleName = "libswiftCore.dylib"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
-               <Location
-                  uuid = "36DE04F7-BECF-4A1E-A395-84179C63A511 - 189b4a6baed95649"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "swift_willThrowTypedImpl"
-                  moduleName = "libswiftCore.dylib"
-                  usesParentBreakpointCondition = "Yes">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

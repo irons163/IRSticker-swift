@@ -20,12 +20,6 @@
 - Git clone this project.
 - Copy this project into your own project.
 - Add the .xcodeproj into you  project and link it as embed framework.
-#### Options
-- You can remove the `demo` and `ScreenShots` folder.
-
-### Cocoapods
-- Add `pod 'IRSticker-swift'`  in the `Podfile`
-- `pod install`
 
 ## Usage
 

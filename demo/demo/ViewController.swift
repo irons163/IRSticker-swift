@@ -69,23 +69,23 @@ class ViewController: UIViewController, IRStickerViewDelegate {
     }
     
 // MARK: - StickerViewDelegate
-    func ir_StickerView(stickerView: IRStickerView, imageForRightTopControl recommendedSize: CGSize) -> UIImage? {
+    func stickerView(stickerView: IRStickerView, imageForRightTopControl recommendedSize: CGSize) -> UIImage? {
         if stickerView.tag == 1 {
             return UIImage.init(named: "btn_smile.png")
         }
-        
+
         return nil
     }
-    
-    func ir_StickerView(stickerView: IRStickerView, imageForLeftBottomControl recommendedSize: CGSize) -> UIImage? {
+
+    func stickerView(stickerView: IRStickerView, imageForLeftBottomControl recommendedSize: CGSize) -> UIImage? {
         if stickerView.tag == 1 || stickerView.tag == 2 {
             return UIImage.init(named: "btn_flip.png")
         }
-        
+
         return nil
     }
-    
-    func ir_StickerViewDidTapContentView(stickerView: IRStickerView) {
+
+    func stickerViewDidTapContentView(stickerView: IRStickerView) {
         NSLog("Tap[%zd] ContentView", stickerView.tag)
         if let selectedSticker = selectedSticker {
             selectedSticker.enabledBorder = false
@@ -96,9 +96,9 @@ class ViewController: UIViewController, IRStickerViewDelegate {
         selectedSticker!.enabledBorder = true
         selectedSticker!.enabledControl = true
     }
-    
-    func ir_StickerViewDidTapLeftTopControl(stickerView: IRStickerView) {
-        NSLog("Tap[%zd] DeleteControl", stickerView.tag);
+
+    func stickerViewDidTapLeftTopControl(stickerView: IRStickerView) {
+        NSLog("Tap[%zd] DeleteControl", stickerView.tag)
         stickerView.removeFromSuperview()
         for subView in view.subviews {
             if subView.isKind(of: IRStickerView.self)  {
@@ -108,19 +108,19 @@ class ViewController: UIViewController, IRStickerViewDelegate {
             }
         }
     }
-    
-    func ir_StickerViewDidTapLeftBottomControl(stickerView: IRStickerView) {
-        NSLog("Tap[%zd] LeftBottomControl", stickerView.tag);
+
+    func stickerViewDidTapLeftBottomControl(stickerView: IRStickerView) {
+        NSLog("Tap[%zd] LeftBottomControl", stickerView.tag)
         let targetOrientation = (stickerView.contentImage?.imageOrientation == UIImage.Orientation.up ? UIImage.Orientation.upMirrored : UIImage.Orientation.up)
         let invertImage = UIImage.init(cgImage: (stickerView.contentImage?.cgImage)!, scale: 1.0, orientation: targetOrientation)
         stickerView.contentImage = invertImage
     }
-    
-    func ir_StickerViewDidTapRightTopControl(stickerView: IRStickerView) {
-        NSLog("Tap[%zd] RightTopControl", stickerView.tag);
+
+    func stickerViewDidTapRightTopControl(stickerView: IRStickerView) {
+        NSLog("Tap[%zd] RightTopControl", stickerView.tag)
         animator?.removeAllBehaviors()
         let snapbehavior = UISnapBehavior.init(item: stickerView, snapTo: view.center)
-        snapbehavior.damping = 0.65;
+        snapbehavior.damping = 0.65
         animator?.addBehavior(snapbehavior)
     }
 }
