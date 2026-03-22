@@ -16,6 +16,11 @@
     - Scale and move
 
 ## Install
+### Swift Package Manager
+- In Xcode, go to `File > Add Packages...`
+- Enter the repository URL.
+- Choose the `IRSticker-swift` package and add it to your target.
+
 ### Git
 - Git clone this project.
 - Copy this project into your own project.
@@ -66,23 +71,23 @@ sticker.stickerMaxScale = 0
 - Use `IRStickerViewDelegate`, see in the demo project.
 ```swift
 public protocol IRStickerViewDelegate: NSObjectProtocol {
-    func ir_StickerViewDidTapContentView(stickerView: IRStickerView)
+    func stickerViewDidTapContentView(stickerView: IRStickerView)
 
-    func ir_StickerView(stickerView: IRStickerView, imageForLeftTopControl recommendedSize: CGSize) -> UIImage?
+    func stickerView(stickerView: IRStickerView, imageForLeftTopControl recommendedSize: CGSize) -> UIImage?
 
-    func ir_StickerViewDidTapLeftTopControl(stickerView: IRStickerView) // Effective when image is provided.
+    func stickerViewDidTapLeftTopControl(stickerView: IRStickerView) // Effective when image is provided.
 
-    func ir_StickerView(stickerView: IRStickerView, imageForRightTopControl recommendedSize: CGSize) -> UIImage?
+    func stickerView(stickerView: IRStickerView, imageForRightTopControl recommendedSize: CGSize) -> UIImage?
 
-    func ir_StickerViewDidTapRightTopControl(stickerView: IRStickerView) // Effective when image is provided.
+    func stickerViewDidTapRightTopControl(stickerView: IRStickerView) // Effective when image is provided.
 
-    func ir_StickerView(stickerView: IRStickerView, imageForLeftBottomControl recommendedSize: CGSize) -> UIImage?
+    func stickerView(stickerView: IRStickerView, imageForLeftBottomControl recommendedSize: CGSize) -> UIImage?
 
-    func ir_StickerViewDidTapLeftBottomControl(stickerView: IRStickerView) // Effective when image is provided.
+    func stickerViewDidTapLeftBottomControl(stickerView: IRStickerView) // Effective when image is provided.
 
-    func ir_StickerView(stickerView: IRStickerView, imageForRightBottomControl recommendedSize: CGSize) -> UIImage?
+    func stickerView(stickerView: IRStickerView, imageForRightBottomControl recommendedSize: CGSize) -> UIImage?
 
-    func ir_StickerViewDidTapRightBottomControl(stickerView: IRStickerView) // Effective when image is provided.
+    func stickerViewDidTapRightBottomControl(stickerView: IRStickerView) // Effective when image is provided.
 }
 ```
 
