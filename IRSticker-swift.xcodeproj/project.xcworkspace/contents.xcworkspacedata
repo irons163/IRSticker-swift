@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:IRSticker-swift.xcodeproj">
+      location = "self:">
+   </FileRef>
+   <FileRef
+      location = "group:Package.swift">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
    </FileRef>
 </Workspace>
