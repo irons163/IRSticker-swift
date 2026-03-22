@@ -8,8 +8,10 @@
 
 import Foundation
 
-class Utilities {
-    class func getCurrentBundle() -> Bundle {
-        return Bundle.init(for: self)
+enum Utilities {
+    private final class BundleToken {}
+
+    static var currentBundle: Bundle {
+        return Bundle(for: BundleToken.self)
     }
 }

@@ -8,11 +8,11 @@
 
 import UIKit
 
-class IRStickerGestureRecognizer: UIGestureRecognizer {
+final class IRStickerGestureRecognizer: UIGestureRecognizer {
     public var scale: CGFloat = 1
     public var rotation: CGFloat = 0
 
-    var anchorView: UIView!
+    private weak var anchorView: UIView?
     
     convenience init(target: Any?, action: Selector?, anchorView: UIView) {
         self.init(target: target, action: action)
@@ -38,11 +38,12 @@ class IRStickerGestureRecognizer: UIGestureRecognizer {
         }
 
         guard let touch = touches.first,
-              let superview = self.anchorView.superview else {
+              let anchorView = self.anchorView,
+              let superview = anchorView.superview else {
             self.state = .failed
             return
         }
-        let anchorViewCenter = self.anchorView.center
+        let anchorViewCenter = anchorView.center
         let currentPoint = touch.location(in: superview)
         let previousPoint = touch.previousLocation(in: superview)
 

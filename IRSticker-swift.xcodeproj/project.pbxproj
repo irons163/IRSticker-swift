@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A2FB2E52F6FBF4100891C5B /* IRStickerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRStickerViewTests.swift; sourceTree = "<group>"; };
 		4A8F22C22511ADD80031A1BC /* IRSticker_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRSticker_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8F22C52511ADD80031A1BC /* IRSticker_swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRSticker_swift.h; sourceTree = "<group>"; };
 		4A8F22C62511ADD80031A1BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,11 +38,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A2FB2E42F6FBF3B00891C5B /* IRSticker-swiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				4A2FB2E52F6FBF4100891C5B /* IRStickerViewTests.swift */,
+			);
+			path = "IRSticker-swiftTests";
+			sourceTree = "<group>";
+		};
 		4A8F22B82511ADD80031A1BC = {
 			isa = PBXGroup;
 			children = (
 				4A8F22C42511ADD80031A1BC /* IRSticker-swift */,
 				4A8F22C32511ADD80031A1BC /* Products */,
+				4A2FB2E42F6FBF3B00891C5B /* IRSticker-swiftTests */,
 			);
 			sourceTree = "<group>";
 		};
