@@ -17,6 +17,8 @@ public protocol IRStickerViewDelegate: NSObjectProtocol {
 
     func stickerViewDidTapLeftTopControl(stickerView: IRStickerView) // Effective when image is provided.
 
+    func stickerView(stickerView: IRStickerView, imageForRightTopControl recommendedSize: CGSize) -> UIImage?
+
     func stickerViewDidTapRightTopControl(stickerView: IRStickerView) // Effective when image is provided.
 
     func stickerView(stickerView: IRStickerView, imageForLeftBottomControl recommendedSize: CGSize) -> UIImage?
@@ -63,21 +65,18 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
     public var stickerMinScale: CGFloat = 0.5
 
     public var stickerMaxScale: CGFloat = 2.0
-    
+
     public var enabledControl: Bool = true // determine the control view is shown or not, default is YES
     {
         didSet {
-            self.leftTopControl.isHidden = !self.enabledControl
-            self.rightBottomControl.isHidden = !self.enabledControl
-            self.rightTopControl.isHidden = !self.enabledControl
-            self.leftBottomControl.isHidden = !self.enabledControl
+            controlViews.forEach { $0.isHidden = !enabledControl }
         }
     }
     public var enabledShakeAnimation: Bool = true // default is YES
     public var enabledBorder: Bool = true // default is YES
     {
         didSet {
-            if (self.enabledBorder) {
+            if enabledBorder {
                 self.contentView.layer.addSublayer(self.shapeLayer)
             } else {
                 self.shapeLayer.removeFromSuperlayer()
@@ -90,48 +89,48 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
             self.applyContentImage()
         }
     }
-    
+
     public weak var delegate: IRStickerViewDelegate? {
         didSet {
             self.applyDelegate()
         }
     }
-    
-    private let stickerControlViewSize: CGFloat
+
+    let stickerControlViewSize: CGFloat
     private var stickerHalfControlViewSize: CGFloat {
         return stickerControlViewSize / 2
     }
-    
-    private lazy var contentView: UIImageView = {
+
+    lazy var contentView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: stickerHalfControlViewSize, y: stickerHalfControlViewSize, width: frame.size.width, height: frame.size.height))
         return imageView
     }()
 
-    fileprivate lazy var leftTopControl: UIImageView = {
+    lazy var leftTopControl: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: self.contentView.center.x - self.contentView.bounds.size.width / 2 - stickerHalfControlViewSize, y: self.contentView.center.y - self.contentView.bounds.size.height / 2 - stickerHalfControlViewSize, width: stickerControlViewSize, height: stickerControlViewSize))
         imageView.image = UIImage.imageNamedForCurrentBundle(name: "IRSticker.bundle/btn_delete.png")
         return imageView
     }()
 
-    fileprivate lazy var rightTopControl: UIImageView = {
+    lazy var rightTopControl: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: self.contentView.center.x + self.contentView.bounds.size.width / 2 - stickerHalfControlViewSize, y: self.contentView.center.y - self.contentView.bounds.size.height / 2 - stickerHalfControlViewSize, width: stickerControlViewSize, height: stickerControlViewSize))
         imageView.image = UIImage.imageNamedForCurrentBundle(name: "IRSticker.bundle/btn_smile.png")
         return imageView
     }()
 
-    fileprivate lazy var leftBottomControl: UIImageView = {
+    lazy var leftBottomControl: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: self.contentView.center.x - self.contentView.bounds.size.width / 2 - stickerHalfControlViewSize, y: self.contentView.center.y + self.contentView.bounds.size.height / 2 - stickerHalfControlViewSize, width: stickerControlViewSize, height: stickerControlViewSize))
         imageView.image = UIImage.imageNamedForCurrentBundle(name:"IRSticker.bundle/btn_flip.png")
         return imageView
     }()
 
-    fileprivate lazy var rightBottomControl: UIImageView = {
+    lazy var rightBottomControl: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: self.contentView.center.x + self.contentView.bounds.size.width / 2 - stickerHalfControlViewSize, y: self.contentView.center.y + self.contentView.bounds.size.height / 2 - stickerHalfControlViewSize, width: stickerControlViewSize, height: stickerControlViewSize))
         imageView.image = UIImage.imageNamedForCurrentBundle(name: "IRSticker.bundle/btn_resize.png")
         return imageView
     }()
 
-    private lazy var shapeLayer: CAShapeLayer = {
+    lazy var shapeLayer: CAShapeLayer = {
         let shapeLayer = CAShapeLayer()
         let shapeRect = self.contentView.frame
         shapeLayer.bounds = shapeRect
@@ -149,11 +148,16 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
         return shapeLayer
     }()
 
-    private var enableLeftTopControl: Bool
-    private var enableRightTopControl: Bool
-    private var enableLeftBottomControl: Bool
-    private var enableRightBottomControl: Bool
-    
+    /// All four corner controls, ordered left-top, right-top, left-bottom, right-bottom.
+    private var controlViews: [UIImageView] {
+        [leftTopControl, rightTopControl, leftBottomControl, rightBottomControl]
+    }
+
+    private(set) var enableLeftTopControl: Bool
+    private(set) var enableRightTopControl: Bool
+    private(set) var enableLeftBottomControl: Bool
+    private(set) var enableRightBottomControl: Bool
+
     public init(frame: CGRect, contentImage: UIImage, stickerControlViewSize: CGFloat = defaultStickerControlViewSize) {
         self.stickerControlViewSize = stickerControlViewSize
         self.enableRightTopControl = false
@@ -161,7 +165,7 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
         self.enableLeftTopControl = false
         self.enableRightBottomControl = false
         self.enabledControl = false
-        
+
         self.enabledShakeAnimation = false
         self.enabledBorder = false
         let stickerHalfControlViewSize = self.stickerControlViewSize / 2
@@ -171,17 +175,17 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
         defer {
             self.contentImage = contentImage
         }
-        
+
         self.addSubview(self.contentView)
         self.addSubview(self.rightBottomControl)
         self.addSubview(self.leftTopControl)
         self.addSubview(self.rightTopControl)
         self.addSubview(self.leftBottomControl)
-        
+
         setupConfig()
         attachGestures()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -189,27 +193,24 @@ public class IRStickerView: UIView, UIGestureRecognizerDelegate {
 
 // MARK: - Set up
 extension IRStickerView {
-    
+
     private func setupConfig() {
         self.isExclusiveTouch = true
-        
+
         self.isUserInteractionEnabled = true
         self.contentView.isUserInteractionEnabled = true
-        self.rightBottomControl.isUserInteractionEnabled = true
-        self.leftTopControl.isUserInteractionEnabled = true
-        self.rightTopControl.isUserInteractionEnabled = true
-        self.leftBottomControl.isUserInteractionEnabled = true
-        
+        controlViews.forEach { $0.isUserInteractionEnabled = true }
+
         self.enableRightTopControl = false
         self.enableLeftBottomControl = false
         self.enableLeftTopControl = true
         self.enableRightBottomControl = true
         self.enabledControl = true
-        
+
         self.enabledShakeAnimation = true
         self.enabledBorder = true
     }
-    
+
     private func attachGestures() {
         // ContentView
         let rotateGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate(gesture:)))
@@ -226,37 +227,23 @@ extension IRStickerView {
         panGesture.delegate = self
         self.contentView.addGestureRecognizer(panGesture)
 
+        // Tap recognizers share the same handler; the handler differentiates by gesture.view.
+        addTapRecognizer(to: self.contentView)
+        addTapRecognizer(to: self.leftTopControl)
+        addTapRecognizer(to: self.rightTopControl)
+        addTapRecognizer(to: self.leftBottomControl)
+
+        // ResizeControl (single-hand scale + rotate) plus a tap.
+        let singleHandGesture = IRStickerGestureRecognizer(target: self, action: #selector(handleSingleHandAction(gesture:)), anchorView: self.contentView)
+        self.rightBottomControl.addGestureRecognizer(singleHandGesture)
+        addTapRecognizer(to: self.rightBottomControl)
+    }
+
+    private func addTapRecognizer(to view: UIView) {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
         tapRecognizer.numberOfTapsRequired = 1
         tapRecognizer.delegate = self
-        self.contentView.addGestureRecognizer(tapRecognizer)
-        
-        // DeleteControl
-        let tapRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
-        tapRecognizer2.numberOfTapsRequired = 1
-        tapRecognizer2.delegate = self
-        self.leftTopControl.addGestureRecognizer(tapRecognizer2)
-        
-        // RightTopControl
-        let tapRecognizer3 = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
-        tapRecognizer3.numberOfTapsRequired = 1
-        tapRecognizer3.delegate = self
-        self.rightTopControl.addGestureRecognizer(tapRecognizer3)
-        
-        // LeftBottomControl
-        let tapRecognizer4 = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
-        tapRecognizer4.numberOfTapsRequired = 1
-        tapRecognizer4.delegate = self
-        self.leftBottomControl.addGestureRecognizer(tapRecognizer4)
-        
-        // ResizeControl
-        let singleHandGesture = IRStickerGestureRecognizer(target: self, action: #selector(handleSingleHandAction(gesture:)), anchorView: self.contentView)
-        self.rightBottomControl.addGestureRecognizer(singleHandGesture)
-
-        let tapRecognizer5 = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
-        tapRecognizer5.numberOfTapsRequired = 1
-        tapRecognizer5.delegate = self
-        self.rightBottomControl.addGestureRecognizer(tapRecognizer5)
+        view.addGestureRecognizer(tapRecognizer)
     }
 }
 
@@ -264,27 +251,30 @@ extension IRStickerView {
 extension IRStickerView {
 
     @objc private func handleTap(gesture: UITapGestureRecognizer) {
-        if gesture.view == self.contentView {
+        switch gesture.view {
+        case self.contentView:
             self.handleTapContentView()
-        } else if gesture.view == self.leftTopControl {
+        case self.leftTopControl:
             if self.enableLeftTopControl {
                 self.delegate?.stickerViewDidTapLeftTopControl(stickerView: self)
             }
-        } else if gesture.view == self.rightTopControl {
+        case self.rightTopControl:
             if self.enableRightTopControl {
                 self.delegate?.stickerViewDidTapRightTopControl(stickerView: self)
             }
-        } else if gesture.view == self.leftBottomControl {
+        case self.leftBottomControl:
             if self.enableLeftBottomControl {
                 self.delegate?.stickerViewDidTapLeftBottomControl(stickerView: self)
             }
-        } else if gesture.view == self.rightBottomControl {
+        case self.rightBottomControl:
             if self.enableRightBottomControl {
                 self.delegate?.stickerViewDidTapRightBottomControl(stickerView: self)
             }
+        default:
+            break
         }
     }
-    
+
     private func handleTapContentView() {
         self.superview?.bringSubviewToFront(self)
         // Perform animation
@@ -293,41 +283,25 @@ extension IRStickerView {
         }
         self.delegate?.stickerViewDidTapContentView(stickerView: self)
     }
-    
+
     @objc private func handleMove(gesture: UIPanGestureRecognizer) {
         guard let superview = self.superview else {
             return
         }
         let translation = gesture.translation(in: superview)
-        // Boundary detection
-        var targetPoint = CGPoint(x: self.center.x + translation.x, y: self.center.y + translation.y)
-        targetPoint.x = max(0, targetPoint.x)
-        targetPoint.y = max(0, targetPoint.y)
-        targetPoint.x = min(superview.bounds.size.width, targetPoint.x)
-        targetPoint.y = min(superview.bounds.size.height, targetPoint.y)
-
-        self.center = targetPoint
+        let proposedCenter = CGPoint(x: self.center.x + translation.x, y: self.center.y + translation.y)
+        self.center = boundedCenter(proposedCenter, in: superview.bounds.size)
         gesture.setTranslation(CGPoint.zero, in: superview)
     }
 
     @objc private func handleScale(gesture: UIPinchGestureRecognizer) {
-        var scale = gesture.scale
-        // Scale limit
-        let currentScale = self.currentContentScale()
-        if (!(stickerMinScale == 0 && stickerMaxScale == 0)) {
-            if (scale * currentScale <= stickerMinScale) {
-                scale = stickerMinScale / currentScale
-            } else if (scale * currentScale >= stickerMaxScale) {
-                scale = stickerMaxScale / currentScale
-            }
-        }
-
+        let scale = clampedScale(gesture.scale, currentScale: currentContentScale())
         self.contentView.transform = self.contentView.transform.scaledBy(x: scale, y: scale)
         gesture.scale = 1
 
         relocalControlView()
     }
-    
+
     @objc private func handleRotate(gesture: UIRotationGestureRecognizer) {
         self.contentView.transform = self.contentView.transform.rotated(by: gesture.rotation)
         gesture.rotation = 0
@@ -336,30 +310,52 @@ extension IRStickerView {
     }
 
     @objc private func handleSingleHandAction(gesture: IRStickerGestureRecognizer) {
-        var scale = gesture.scale
-        // Scale limit
-        let currentScale = self.currentContentScale()
-        if (!(stickerMinScale == 0 && stickerMaxScale == 0)) {
-            if (scale * currentScale <= stickerMinScale) {
-                scale = stickerMinScale / currentScale
-            } else if (scale * currentScale >= stickerMaxScale) {
-                scale = stickerMaxScale / currentScale
-            }
-        }
-
+        let scale = clampedScale(gesture.scale, currentScale: currentContentScale())
         self.contentView.transform = self.contentView.transform.scaledBy(x: scale, y: scale)
         self.contentView.transform = self.contentView.transform.rotated(by: gesture.rotation)
         gesture.resetGesture()
-        
+
         relocalControlView()
     }
-    
+
+    /// Clamp a proposed pinch/zoom factor so the resulting absolute scale stays
+    /// within `[stickerMinScale, stickerMaxScale]`. When both limits are zero the
+    /// proposed scale is returned unchanged (scaling is unbounded).
+    func clampedScale(_ scale: CGFloat, currentScale: CGFloat) -> CGFloat {
+        guard !(stickerMinScale == 0 && stickerMaxScale == 0) else {
+            return scale
+        }
+        let projected = scale * currentScale
+        if projected <= stickerMinScale {
+            return stickerMinScale / currentScale
+        } else if projected >= stickerMaxScale {
+            return stickerMaxScale / currentScale
+        }
+        return scale
+    }
+
+    /// Clamp a center point so the sticker stays anchored within `size`.
+    func boundedCenter(_ center: CGPoint, in size: CGSize) -> CGPoint {
+        CGPoint(
+            x: min(max(0, center.x), size.width),
+            y: min(max(0, center.y), size.height)
+        )
+    }
+
     private func relocalControlView() {
-        let originalCenter = self.contentView.center.applying(self.contentView.transform.inverted())
-        self.rightBottomControl.center = CGPoint(x: originalCenter.x + self.contentView.bounds.size.width / 2.0, y: originalCenter.y + self.contentView.bounds.size.height / 2.0).applying(self.contentView.transform)
-        self.leftTopControl.center = CGPoint(x: originalCenter.x - self.contentView.bounds.size.width / 2.0, y: originalCenter.y - self.contentView.bounds.size.height / 2.0).applying(self.contentView.transform)
-        self.rightTopControl.center = CGPoint(x: originalCenter.x + self.contentView.bounds.size.width / 2.0, y: originalCenter.y - self.contentView.bounds.size.height / 2.0).applying(self.contentView.transform)
-        self.leftBottomControl.center = CGPoint(x: originalCenter.x - self.contentView.bounds.size.width / 2.0, y: originalCenter.y + self.contentView.bounds.size.height / 2.0).applying(self.contentView.transform)
+        let transform = self.contentView.transform
+        let originalCenter = self.contentView.center.applying(transform.inverted())
+        let halfWidth = self.contentView.bounds.size.width / 2.0
+        let halfHeight = self.contentView.bounds.size.height / 2.0
+
+        func cornerCenter(dx: CGFloat, dy: CGFloat) -> CGPoint {
+            CGPoint(x: originalCenter.x + dx * halfWidth, y: originalCenter.y + dy * halfHeight).applying(transform)
+        }
+
+        self.rightBottomControl.center = cornerCenter(dx: 1, dy: 1)
+        self.leftTopControl.center = cornerCenter(dx: -1, dy: -1)
+        self.rightTopControl.center = cornerCenter(dx: 1, dy: -1)
+        self.leftBottomControl.center = cornerCenter(dx: -1, dy: 1)
     }
 
     // MARK: - Other
@@ -381,7 +377,7 @@ extension IRStickerView {
         self.handleTapContentView()
     }
 
-    private func currentContentScale() -> CGFloat {
+    func currentContentScale() -> CGFloat {
         let transform = self.contentView.transform
         return sqrt(transform.a * transform.a + transform.c * transform.c)
     }
@@ -399,7 +395,7 @@ extension IRStickerView {
         }
         return true
     }
-    
+
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isKind(of: UITapGestureRecognizer.self) || otherGestureRecognizer.isKind(of: UITapGestureRecognizer.self) {
             return false
@@ -417,17 +413,16 @@ extension IRStickerView {
             return nil
         }
         if self.enabledControl {
-            if self.enableLeftTopControl && self.leftTopControl.point(inside: self.convert(point, to: self.leftTopControl), with: event) {
-                return self.leftTopControl
-            }
-            if self.enableRightTopControl && self.rightTopControl.point(inside: self.convert(point, to: self.rightTopControl), with: event) {
-                return self.rightTopControl
-            }
-            if self.enableLeftBottomControl && self.leftBottomControl.point(inside: self.convert(point, to: self.leftBottomControl), with: event) {
-                return self.leftBottomControl
-            }
-            if self.enableRightBottomControl && self.rightBottomControl.point(inside: self.convert(point, to: self.rightBottomControl), with: event) {
-                return self.rightBottomControl
+            let enabledControls: [(enabled: Bool, view: UIImageView)] = [
+                (enableLeftTopControl, leftTopControl),
+                (enableRightTopControl, rightTopControl),
+                (enableLeftBottomControl, leftBottomControl),
+                (enableRightBottomControl, rightBottomControl)
+            ]
+            for control in enabledControls where control.enabled {
+                if control.view.point(inside: self.convert(point, to: control.view), with: event) {
+                    return control.view
+                }
             }
         }
         if self.contentView.point(inside: self.convert(point, to: self.contentView), with: event) {
@@ -442,37 +437,18 @@ extension IRStickerView {
 extension IRStickerView {
 
     private func applyDelegate() {
-        let leftTopImage = delegate?.stickerView(stickerView: self, imageForLeftTopControl: CGSize(width: stickerControlViewSize, height: stickerControlViewSize))
-        self.leftTopControl.image = leftTopImage
-        if leftTopImage != nil {
-            self.enableLeftTopControl = true
-        } else {
-            self.enableLeftTopControl = false
-        }
-        
-        let rightTopImage = delegate?.stickerView(stickerView: self, imageForRightTopControl: CGSize(width: stickerControlViewSize, height: stickerControlViewSize))
-        self.rightTopControl.image = rightTopImage
-        if rightTopImage != nil {
-            self.enableRightTopControl = true
-        } else {
-            self.enableRightTopControl = false
-        }
-        
-        let leftBottomImage = delegate?.stickerView(stickerView: self, imageForLeftBottomControl: CGSize(width: stickerControlViewSize, height: stickerControlViewSize))
-        self.leftBottomControl.image = leftBottomImage
-        if leftBottomImage != nil {
-            self.enableLeftBottomControl = true
-        } else {
-            self.enableLeftBottomControl = false
-        }
-        
-        let rightBottomImage = delegate?.stickerView(stickerView: self, imageForRightBottomControl: CGSize(width: stickerControlViewSize, height: stickerControlViewSize))
-        self.rightBottomControl.image = rightBottomImage
-        if rightBottomImage != nil {
-            self.enableRightBottomControl = true
-        } else {
-            self.enableRightBottomControl = false
-        }
+        let recommendedSize = CGSize(width: stickerControlViewSize, height: stickerControlViewSize)
+        enableLeftTopControl = apply(image: delegate?.stickerView(stickerView: self, imageForLeftTopControl: recommendedSize), to: leftTopControl)
+        enableRightTopControl = apply(image: delegate?.stickerView(stickerView: self, imageForRightTopControl: recommendedSize), to: rightTopControl)
+        enableLeftBottomControl = apply(image: delegate?.stickerView(stickerView: self, imageForLeftBottomControl: recommendedSize), to: leftBottomControl)
+        enableRightBottomControl = apply(image: delegate?.stickerView(stickerView: self, imageForRightBottomControl: recommendedSize), to: rightBottomControl)
+    }
+
+    /// Assign `image` to `control` and report whether the control should be enabled.
+    @discardableResult
+    private func apply(image: UIImage?, to control: UIImageView) -> Bool {
+        control.image = image
+        return image != nil
     }
 
     private func applyContentImage() {

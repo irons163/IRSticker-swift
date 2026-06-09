@@ -1,10 +1,12 @@
 ![Build Status](https://img.shields.io/badge/build-%20passing%20-brightgreen.svg)
 ![Platform](https://img.shields.io/badge/Platform-%20iOS%20-blue.svg)
+![Version](https://img.shields.io/badge/version-%202.1.0%20-orange.svg)
 
 # IRSticker-swift 
 
 - IRSticker-swift is a powerful sticker for iOS.
 - See objc version in here: [IRStickerr](https://github.com/irons163/IRSticker).
+- See the [CHANGELOG](./CHANGELOG.md) for release notes.
 
 ## Features
 - Customize your stickers image.
@@ -90,6 +92,10 @@ public protocol IRStickerViewDelegate: NSObjectProtocol {
     func stickerViewDidTapRightBottomControl(stickerView: IRStickerView) // Effective when image is provided.
 }
 ```
+
+## Tests
+- A unit-test suite (Swift Testing) covers the core logic: initialization, scale limits, bounded movement, hit testing, delegate callbacks, and gesture recognition.
+- Run the tests in Xcode with `⌘U`.
 
 ## Screenshots
 | Stickers | After effections |
